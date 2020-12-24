@@ -2,7 +2,7 @@
 Ce projet va vous faire ecrire un programme qui resout des Rubik’s Cubes en un minimum de mouvements.
 
 <h2>Todo :</h2>
-- [ ] Se renseigner
+	- [ ] Se renseigner
 
 <h2>Useful links :</h2>
 <ul>

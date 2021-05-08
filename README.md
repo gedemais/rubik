@@ -3,11 +3,12 @@ Ce projet va vous faire ecrire un programme qui resout des Rubik’s Cubes en un
 
 <h2>Todo :</h2>
 
-- [ ] Se renseigner
+- [ ] Se renseigner sur les techniques de resolution FMC.
 
 <h2>Useful links :</h2>
 <ul>
 	<li>https://forum.francocube.com/viewtopic.php?t=3050</li>
+	<li>https://www.speedcubingtips.eu/methode-zb/</li>
 </ul>
 
 <h2>Blocked :</h2>

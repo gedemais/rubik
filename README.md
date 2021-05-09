@@ -24,3 +24,11 @@ Ce projet va vous faire ecrire un programme qui resout des Rubik’s Cubes en un
 
 <h2> ---------- Done Backlog ---------- </h2>
 
+
+Resolution brainstorm :
+
+Steps:
+
+1. Get the white cross by placing each white edge at the right place
+
+2. Place all the corners to complete white face

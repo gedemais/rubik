@@ -21,11 +21,11 @@ class   Cube():
 
         # Linking matrices parts together to replicate the mecanical operations of a Rubik's Cube
         self.sides["F"]["links"] = [("U", "D"), ("R", "L"), ("D", "U"), ("L", "R")]
-        self.sides["R"]["links"] = [("U", "R"), ("B", "R"), ("D", "R"), ("F", "R"),]
+        self.sides["R"]["links"] = [("U", "R"), ("B", "R"), ("D", "R"), ("F", "R")]
         self.sides["U"]["links"] = [("L", "U"), ("B", "U"), ("R", "U"), ("F", "U")]
         self.sides["B"]["links"] = [("U", "U"), ("R", "R"), ("D", "D"), ("L", "L")]
-        self.sides["L"]["links"] = [("U", "L"), ("B", "L"), ("D", "L"), ("F", "L")]
-        self.sides["D"]["links"] = [("F", "D"), ("L", "D"), ("B", "D"), ("R", "D")]
+        self.sides["L"]["links"] = [("F", "L"), ("D", "L"), ("B", "L"), ("U", "L")]
+        self.sides["D"]["links"] = [("R", "D"), ("B", "D"), ("L", "D"), ("F", "D")]
 
     def show(self):
         for i, side in enumerate(self.sides.keys()):
@@ -81,7 +81,7 @@ class   Cube():
 
 def main():
     cube = Cube()
-    cube.move('L')
+    cube.move('D')
     cube.show()
 
 

@@ -50,17 +50,13 @@ class   Cube():
 
     def write_line(self, link, line):
         if link[1] == 'U':
-            print('upper line ({})'.format(line))
             self.sides[link[0]]['matrix'][0] = line
         elif link[1] == 'D':
-            print('bottom line')
             self.sides[link[0]]['matrix'][2] = line
         elif link[1] == 'L':
-            print('left line')
             for i, dest_line in enumerate(self.sides[link[0]]['matrix']):
                 dest_line[0] = line[i]
         elif link[1] == 'R':
-            print('right line')
             for i, dest_line in enumerate(self.sides[link[0]]['matrix']):
                 dest_line[2] = line[i]
 

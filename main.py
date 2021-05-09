@@ -49,6 +49,7 @@ class   Cube():
             return [i[2] for i in self.sides[link[0]]['matrix']]
 
     def write_line(self, link, line):
+        """ Write the content of a row / column of cases to another """
         if link[1] == 'U':
             self.sides[link[0]]['matrix'][0] = line
         elif link[1] == 'D':

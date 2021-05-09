@@ -77,8 +77,8 @@ class Cube():
             self.clockwise_move(move)
         elif len(move) == 2:
             assert move[0] in 'FLRUDB'
-            assert move[1] == '\'' or move[1] == '2'
-            if move[1] == '\'':
+            assert move[1] == '’' or move[1] == '2'
+            if move[1] == '’':
                 self.anti_clockwise_move(move[0])
             elif move[1] == '2':
                 self.clockwise_move(move[0])

@@ -1,5 +1,5 @@
 import numpy as np
-
+from sys import argv
 
 class   Cube():
     """ Abstraction of a Rubik's cube """
@@ -61,7 +61,22 @@ class   Cube():
             for i, dest_line in enumerate(self.sides[link[0]]['matrix']):
                 dest_line[2] = line[i]
 
-    def move(self, side):
+    def move(self, move):
+        assert len(move) < 3
+        if len(move) == 1:
+            assert move in 'FLRUDB'
+            self.clockwise_move(move)
+        elif len(move) == 2:
+            assert move[0] in 'FLRUDB'
+            assert move[1] == '\'' or move[1] == '2'
+            if move[1] == '\'':
+                self.anti_clockwise_move(move[0])
+            elif move[1] == '2':
+                self.clockwise_move(move[0])
+                self.clockwise_move(move[0])
+
+
+    def clockwise_move(self, side):
         # Clockwise "classic" move
         self.sides[side]["matrix"] = np.moveaxis(self.sides[side]["matrix"], -1, 0)
         self.sides[side]["matrix"] = np.flip(self.sides[side]["matrix"], 1)
@@ -70,19 +85,21 @@ class   Cube():
         self.swap_lines(self.sides[side]["links"][1], self.sides[side]["links"][3])
         self.swap_lines(self.sides[side]["links"][2], self.sides[side]["links"][3])
 
-    def prim_move(self, side):
+    def anti_clockwise_move(self, side):
         # Anti-clockwise move
         self.sides[side]["matrix"] = np.moveaxis(self.sides[side]["matrix"], -1, 0)
         self.sides[side]["matrix"] = np.flip(self.sides[side]["matrix"], 0)
         # Swap lines to step in the anti-clockwise direction
-        self.swap_lines(self.sides[side]["links"][0], self.sides[side]["links"][3])
-        self.swap_lines(self.sides[side]["links"][1], self.sides[side]["links"][3])
         self.swap_lines(self.sides[side]["links"][2], self.sides[side]["links"][3])
+        self.swap_lines(self.sides[side]["links"][1], self.sides[side]["links"][3])
+        self.swap_lines(self.sides[side]["links"][0], self.sides[side]["links"][3])
 
 
 def main():
     cube = Cube()
-    cube.move('D')
+    for move in argv[1:]:
+        print(move)
+        cube.move(move)
     cube.show()
 
 

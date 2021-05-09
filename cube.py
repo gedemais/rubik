@@ -1,7 +1,8 @@
 import numpy as np
 from sys import argv
 
-class   Cube():
+
+class Cube():
     """ Abstraction of a Rubik's cube """
     def __init__(self):
         # Sides and colors identifiers
@@ -16,16 +17,24 @@ class   Cube():
                                 'matrix': np.ndarray((3, 3), dtype=list),
                                 'links': []
                                }
-            # Fills a faces matrix with an unit color (assuming that we generate a solved cube)
+            # Fills a faces matrix with an unit color
+            # (assuming that we generate a solved cube)
             self.sides[name]["matrix"].fill(c)
 
-        # Linking matrices parts together to replicate the mecanical operations of a Rubik's Cube
-        self.sides["F"]["links"] = [("U", "D"), ("R", "L"), ("D", "U"), ("L", "R")]
-        self.sides["R"]["links"] = [("U", "R"), ("B", "R"), ("D", "R"), ("F", "R")]
-        self.sides["U"]["links"] = [("L", "U"), ("B", "U"), ("R", "U"), ("F", "U")]
-        self.sides["B"]["links"] = [("U", "U"), ("R", "R"), ("D", "D"), ("L", "L")]
-        self.sides["L"]["links"] = [("F", "L"), ("D", "L"), ("B", "L"), ("U", "L")]
-        self.sides["D"]["links"] = [("R", "D"), ("B", "D"), ("L", "D"), ("F", "D")]
+        # Linking matrices parts together to replicate the
+        # mecanical operations of a Rubik's Cube
+        self.sides["F"]["links"] = [("U", "D"), ("R", "L"), ("D", "U"),
+                                                            ("L", "R")]
+        self.sides["R"]["links"] = [("U", "R"), ("B", "R"), ("D", "R"),
+                                                            ("F", "R")]
+        self.sides["U"]["links"] = [("L", "U"), ("B", "U"), ("R", "U"),
+                                                            ("F", "U")]
+        self.sides["B"]["links"] = [("U", "U"), ("R", "R"), ("D", "D"),
+                                                            ("L", "L")]
+        self.sides["L"]["links"] = [("F", "L"), ("D", "L"), ("B", "L"),
+                                                            ("U", "L")]
+        self.sides["D"]["links"] = [("R", "D"), ("B", "D"), ("L", "D"),
+                                                            ("F", "D")]
 
     def show(self):
         for i, side in enumerate(self.sides.keys()):
@@ -75,24 +84,37 @@ class   Cube():
                 self.clockwise_move(move[0])
                 self.clockwise_move(move[0])
 
-
     def clockwise_move(self, side):
         # Clockwise "classic" move
-        self.sides[side]["matrix"] = np.moveaxis(self.sides[side]["matrix"], -1, 0)
-        self.sides[side]["matrix"] = np.flip(self.sides[side]["matrix"], 1)
+        self.sides[side]["matrix"] = np.moveaxis(self.sides[side]["matrix"],
+                                                 -1, 0)
+        self.sides[side]["matrix"] = np.flip(self.sides[side]["matrix"],
+                                             1)
         # Swap lines to step in the clockwise direction
-        self.swap_lines(self.sides[side]["links"][0], self.sides[side]["links"][3])
-        self.swap_lines(self.sides[side]["links"][1], self.sides[side]["links"][3])
-        self.swap_lines(self.sides[side]["links"][2], self.sides[side]["links"][3])
+        self.swap_lines(self.sides[side]["links"][0],
+                        self.sides[side]["links"][3])
+
+        self.swap_lines(self.sides[side]["links"][1],
+                        self.sides[side]["links"][3])
+
+        self.swap_lines(self.sides[side]["links"][2],
+                        self.sides[side]["links"][3])
 
     def anti_clockwise_move(self, side):
         # Anti-clockwise move
-        self.sides[side]["matrix"] = np.moveaxis(self.sides[side]["matrix"], -1, 0)
-        self.sides[side]["matrix"] = np.flip(self.sides[side]["matrix"], 0)
+        self.sides[side]["matrix"] = np.moveaxis(self.sides[side]["matrix"],
+                                                 -1, 0)
+        self.sides[side]["matrix"] = np.flip(self.sides[side]["matrix"],
+                                             0)
         # Swap lines to step in the anti-clockwise direction
-        self.swap_lines(self.sides[side]["links"][2], self.sides[side]["links"][3])
-        self.swap_lines(self.sides[side]["links"][1], self.sides[side]["links"][3])
-        self.swap_lines(self.sides[side]["links"][0], self.sides[side]["links"][3])
+        self.swap_lines(self.sides[side]["links"][2],
+                        self.sides[side]["links"][3])
+
+        self.swap_lines(self.sides[side]["links"][1],
+                        self.sides[side]["links"][3])
+
+        self.swap_lines(self.sides[side]["links"][0],
+                        self.sides[side]["links"][3])
 
 
 def main():
